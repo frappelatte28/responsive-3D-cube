@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    let root = document.documentElement
+    let height = window.innerHeight
+    let width = window.innerWidth
+    ratio =  width / height
+    root.style.setProperty('--ratio',ratio)
+    window.addEventListener('resize', handleResize)
+    function handleResize(){
+        window.location.reload()
+      
+    }
+</script>
+<style>
+
+    :root {
+  --width: 90vw;
+  --height:90vh;
+  }
+    body{
+
+      
+        height: 100vh;
+
+
+        border:2px solid  red
+    }
+
+    .scene{
+        margin:50px auto;
+        width: var(--width);
+        height: var(--height);
+        perspective: 500vw;
+        /* perspective-origin: 100% 100; */
+    }
+    .showcase{
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+
+        animation-name: frappeCubeAnimation;
+        animation-duration: 15s;
+        animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+        animation-iteration-count: infinite;
+        
+    }
+    
+    .showcase div{
+        position: absolute;
+        height: var(--height);
+        width:var(--width);
+
+    }
+    .showcase div:nth-child(1){
+        background-color: red;
+        transform:translateZ( calc(var(--width) / 2) );
+    }
+    .showcase div:nth-child(2){
+        background-color: royalblue;
+        transform:rotateY(90deg) translateZ( calc(var(--width) / 2))
+
+    }
+    .showcase div:nth-child(3){
+        background-image: url('1.JPG');
+        background-position:top;
+        background-size: cover;
+        background-repeat: no-repeat;
+        transform:rotateY(-90deg) translateZ( calc(var(--width) / 2))
+    }
+    .showcase div:nth-child(4){
+        background-color: rgb(168, 54, 73) ;
+        transform:rotateY(180deg) translateZ( calc(var(--width) / 2))
+    }
+    .showcase div:nth-child(5){
+      
+        background-color: rgb(159, 197, 202) ;
+        transform:rotateX(90deg) translateZ(calc( var(--height) / 2)) scaleY( var(--ratio));
+    }
+
+    .showcase div:nth-child(6){
+        background-color: rgb(3, 21, 24) ;
+        transform:rotateX(-90deg) translateZ(calc( var(--height) / 2)) scaleY( var(--ratio));
+
+    }
+
+    @keyframes frappeCubeAnimation {
+        0%{
+            transform: rotate(0);
+        }
+        15%{
+            transform:  rotateY(-90deg) translateX( calc(-1 * var(--width) / 2 ));
+        }
+
+        30%{
+            transform:  rotateY(180deg);
+        }
+        45%{
+            transform: rotateY(90deg);
+        }
+
+        60%{
+            transform:  rotateX(90deg);
+
+        }
+        90%{
+            transform:rotateX(-90deg);
+        }
+        
+        
+    }
+
+    .show-right{
+    
+        animation:show-right 3s linear   ;
+        animation-fill-mode: forwards
+    }
+
+    @keyframes show-right {
+        from{
+            transform: rotate(0);
+        }
+        to{
+            transform: rotateY(-90deg);
+        }
+        
+    }
+
+
+</style>
+<body>
+    <div class = "scene">
+
+    <div class="showcase">
+        <div class="front"></div>
+        <div class="right"></div>
+        <div class="left"></div>
+        <div class="back"></div>
+        <div class="top"></div>
+        <div class="bottom"></div>
+
+       
+    </div>
+</div>
+    
+</body>
+</html>
